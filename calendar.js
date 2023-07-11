@@ -6,6 +6,7 @@ const thisYear=date.getFullYear();
 const thisMonth=date.getMonth()+1;
 let year=thisYear;
 let month=thisMonth;
+let scale
 
 function decorateDate(startDate, endDate)
 {
@@ -84,7 +85,28 @@ function moveCalender(e) //ボタン
     showCalender(year,month);
 }
 
+function changeSize()
+{
+    let w=document.documentElement.clientWidth;
+    let h=document.documentElement.clientHeight;
+
+
+    scale = w / 250;
+    document.getElementById("container").style.transform = "scale(" + scale + ")";
+
+    console.log();
+    if((document.getElementById("container").clientHeight*scale)>h)
+    {
+        scale = h / 400;
+        document.getElementById("container").style.transform = "scale(" + scale + ")";
+    }
+
+}
+
 document.getElementById("next").addEventListener("click", moveCalender);
 document.getElementById("prev").addEventListener("click", moveCalender);
+window.addEventListener("resize", changeSize);
+window.addEventListener("load", changeSize);
+
 
 showCalender(thisYear, thisMonth);
