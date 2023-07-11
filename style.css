@@ -1,0 +1,41 @@
+#buttons {
+    display: flex;
+    justify-content: center;
+    gap: 100px;
+}
+
+button {
+    width: 40px;
+    text-align: center;
+}
+
+#calender {
+    display: flex;
+    justify-content: center;
+}
+
+table {
+    border-spacing: 0;
+    border-collapse: collapse;
+}
+
+td {
+    padding: 5px;
+    text-align: center;
+}
+
+td:first-child {
+    color: red;
+}
+
+td:last-child {
+    color: royalblue;
+}
+
+.holiday {
+    color: red;
+}
+
+.today {
+    background-color: yellow;
+}
