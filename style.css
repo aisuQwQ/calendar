@@ -4,7 +4,11 @@
     display: flex;
     flex-direction: column;
     justify-content: center;
-    max-width: 600px;
+    max-width: 400px;
+}
+
+#attachment {
+    margin: 5% 0;
 }
 
 @media only screen and (min-width: 800px) {
@@ -12,10 +16,23 @@
         margin: 0 auto;
         transform-origin: top center;
         display: flex;
-        flex-direction: column;
+        flex-direction: row;
         justify-content: center;
-        max-width: 600px;
+        max-width: 800px;
     }
+    #content {
+        width: 100%;
+        max-width: 400px;
+    }
+    #attachment {
+        width: 100%;
+        max-width: 200px;
+        margin-top: 101px;
+    }
+}
+
+#jump {
+    margin: 5% 0;
 }
 
 #head {
@@ -32,11 +49,11 @@
 }
 
 button {
-    width: 40px;
+    width: 50px;
     text-align: center;
 }
 
-#calender {
+#calendar {
     display: flex;
     justify-content: center;
 }
@@ -85,4 +102,8 @@ td:last-child {
 }
 .Sun {
     color:red;
+}
+
+#jump{
+    background-color: rgb(255, 240, 219);
 }

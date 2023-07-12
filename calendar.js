@@ -19,7 +19,7 @@ function decorateDate(startDate, endDate)
         document.getElementById(holidayList[i].date.getDate()).classList.add('holiday');
 }
 
-function showCalender(year, month)
+function showCalendar(year, month)
 {
     html="";
     html+="<h1>"+year+"/"+month+"</h1><br>";
@@ -58,11 +58,25 @@ function showCalender(year, month)
     html+="</tr>";
     html+="</table>";
     
-    document.getElementById("calender").innerHTML=html;
+    document.getElementById("calendar").innerHTML=html;
     decorateDate(startDate, endDate);
+
+    //info削除
+    document.getElementById('infoDate').innerHTML='';
+    document.getElementById('infoHoliday').innerHTML='';
+
+    //ボタン制御
+    if(year==2050&&month==12)
+        document.getElementById("next").setAttribute("disabled", true);
+    else
+        document.getElementById("next").removeAttribute("disabled");
+    if(year==1970&&month==1)
+        document.getElementById("prev").setAttribute("disabled", true);
+    else
+        document.getElementById("prev").removeAttribute("disabled");
 }
 
-function moveCalender(e) //ボタン
+function moveCalendar(e) //ボタン
 {
     if(e.target.id=="next") //来月
     {
@@ -82,7 +96,7 @@ function moveCalender(e) //ボタン
             year--;
         }
     }
-    showCalender(year,month);
+    showCalendar(year,month);
 }
 
 function showInfo(e)
@@ -105,13 +119,34 @@ function showInfo(e)
     document.getElementById('infoDay').classList.add('holiday');
     let holidayName=holiday_jp.between(target, target)[0]['name']
     document.getElementById('infoHoliday').innerHTML=holidayName;
-    console.log(holidayName);
-    
 }
 
-document.getElementById("next").addEventListener("click", moveCalender);
-document.getElementById("prev").addEventListener("click", moveCalender);
+function initSelecter()
+{
+    let selecterHtml=''
+    for(let i=1; i<=12; i++)
+        selecterHtml+="<option value='"+i+"'>"+i+"月"+"</option>";
+    document.getElementById('monthId').innerHTML=selecterHtml;
+    selecterHtml=''
+    for(let i=1970; i<=2050; i++)
+        selecterHtml+="<option value='"+i+"'>"+i+"年"+"</option>";
+    document.getElementById('yearId').innerHTML=selecterHtml;
+
+    document.getElementById('monthId').options[thisMonth-1].selected=true;
+    document.getElementById('yearId').options[thisYear-1970].selected=true;
+}
+
+function jumpCalendar()
+{
+    month=document.getElementById('monthId').value;
+    year=document.getElementById('yearId').value;
+    showCalendar(year, month);
+}
+
+document.getElementById("next").addEventListener("click", moveCalendar);
+document.getElementById("prev").addEventListener("click", moveCalendar);
+document.getElementById("jumpButton").addEventListener("click", jumpCalendar);
 document.addEventListener("click", showInfo);
 
-
-showCalender(thisYear, thisMonth);
+initSelecter()
+showCalendar(thisYear, thisMonth);
