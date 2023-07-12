@@ -1,12 +1,12 @@
 
 let html='';
 const weeks=['日', '月', '火', '水', '木', '金', '土'];
+const eweeks=['Sun', 'Mon', 'Tue', 'Wen', 'Thi', 'Fri', 'Sta'];
 const date=new Date();
 const thisYear=date.getFullYear();
 const thisMonth=date.getMonth()+1;
 let year=thisYear;
 let month=thisMonth;
-let scale
 
 function decorateDate(startDate, endDate)
 {
@@ -85,28 +85,33 @@ function moveCalender(e) //ボタン
     showCalender(year,month);
 }
 
-function changeSize()
+function showInfo(e)
 {
-    let w=document.documentElement.clientWidth;
-    let h=document.documentElement.clientHeight;
-
-
-    scale = w / 250;
-    document.getElementById("container").style.transform = "scale(" + scale + ")";
-
-    console.log();
-    if((document.getElementById("container").clientHeight*scale)>h)
+    if(e.target.nodeName!='TD') return;
+    let id=e.target.id;
+    if(id=='') return;
+    
+    let infoHtml='';
+    let target=new Date(year, month-1, id);
+    infoHtml+=year+"年"+month+"月"+id+"日"
+    +"("+"<span id=infoDay>"+weeks[target.getDay()]+"</span>"+")";
+    document.getElementById('infoDate').innerHTML=infoHtml;
+    document.getElementById("infoDay").classList.add(eweeks[target.getDay()]);
+    if(!holiday_jp.isHoliday(target))
     {
-        scale = h / 400;
-        document.getElementById("container").style.transform = "scale(" + scale + ")";
+        document.getElementById('infoHoliday').innerHTML='';
+        return;
     }
-
+    document.getElementById('infoDay').classList.add('holiday');
+    let holidayName=holiday_jp.between(target, target)[0]['name']
+    document.getElementById('infoHoliday').innerHTML=holidayName;
+    console.log(holidayName);
+    
 }
 
 document.getElementById("next").addEventListener("click", moveCalender);
 document.getElementById("prev").addEventListener("click", moveCalender);
-window.addEventListener("resize", changeSize);
-window.addEventListener("load", changeSize);
+document.addEventListener("click", showInfo);
 
 
 showCalender(thisYear, thisMonth);

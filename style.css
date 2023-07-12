@@ -1,17 +1,34 @@
 #container {
+    margin: 0 auto;
     transform-origin: top center;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    max-width: 600px;
 }
 
+@media only screen and (min-width: 800px) {
+    #container {
+        margin: 0 auto;
+        transform-origin: top center;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        max-width: 600px;
+    }
+}
 
 #head {
     display: flex;
     justify-content: center;
+    width: 100%;
 }
 
 #buttons {
     display: flex;
-    justify-content: center;
+    justify-content: space-between;
     gap: 100px;
+    width: 100%;
 }
 
 button {
@@ -27,11 +44,17 @@ button {
 table {
     border-spacing: 0;
     border-collapse: collapse;
+    width: 100%;
+    height: 100%;
 }
 
 td {
     padding: 5px;
     text-align: center;
+}
+
+td:hover {
+    background-color: rgb(220, 255, 243);
 }
 
 td:first-child {
@@ -43,9 +66,23 @@ td:last-child {
 }
 
 .holiday {
-    color: red;
+    color: red !important;
 }
 
 .today {
     background-color: yellow;
+}
+
+#info {
+    background-color: rgb(255, 245, 234);
+    display: flex;
+    flex-direction: column;
+    margin: 5% 0;
+}
+
+.Sta {
+   color: royalblue; 
+}
+.Sun {
+    color:red;
 }
