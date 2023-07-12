@@ -101,16 +101,19 @@ function moveCalendar(e) //ボタン
 
 function showInfo(e)
 {
-    if(e.target.nodeName!='TD') return;
+    if(e.target.nodeName!='TD') return; //対象が日付以外の時
     let id=e.target.id;
-    if(id=='') return;
+    if(id=='') return; //空白の時
     
+    //infoDate
     let infoHtml='';
     let target=new Date(year, month-1, id);
     infoHtml+=year+"年"+month+"月"+id+"日"
     +"("+"<span id=infoDay>"+weeks[target.getDay()]+"</span>"+")";
     document.getElementById('infoDate').innerHTML=infoHtml;
     document.getElementById("infoDay").classList.add(eweeks[target.getDay()]);
+
+    //infoHoliday
     if(!holiday_jp.isHoliday(target))
     {
         document.getElementById('infoHoliday').innerHTML='';
