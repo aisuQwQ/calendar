@@ -1,7 +1,7 @@
 
 let html='';
 const weeks=['日', '月', '火', '水', '木', '金', '土'];
-const eweeks=['Sun', 'Mon', 'Tue', 'Wen', 'Thi', 'Fri', 'Sta'];
+const eweeks=['Sun', 'Mon', 'Tue', 'Wen', 'Thu', 'Fri', 'Sta'];
 const date=new Date();
 const thisYear=date.getFullYear();
 const thisMonth=date.getMonth()+1;
